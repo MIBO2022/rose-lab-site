@@ -13,9 +13,11 @@ const { title='Rose Lab', description='台灣家庭自學與幼兒英文紀錄' 
     <meta name="theme-color" content="#fffdf9" />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="site-body">
     <Header />
-    <slot />
+    <div class="site-content">
+      <slot />
+    </div>
     <Footer />
   </body>
 </html>
