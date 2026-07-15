@@ -2,23 +2,20 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-const { title='Rose Lab', description='陪孩子從零開始學英文的真實紀錄' } = Astro.props;
+const { title='Rose Lab', description='台灣家庭自學與幼兒英文紀錄' } = Astro.props;
 ---
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" id="top">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#fff9f5" />
+    <meta name="theme-color" content="#ffffff" />
     <title>{title}</title>
   </head>
   <body>
-    <div class="page-bg"></div>
     <Header />
-    <main>
-      <slot />
-    </main>
+    <slot />
     <Footer />
   </body>
 </html>

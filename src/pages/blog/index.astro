@@ -5,22 +5,20 @@ const posts=(await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a
 ---
 <BaseLayout title="全部文章｜Rose Lab 自學研究所" description="Rose Lab 的幼兒英文、家庭陪學、免費資源與線上外師課文章。">
   <section class="wrap page-header">
-    <p class="eyebrow">ALL ARTICLES</p>
     <h1>全部文章</h1>
-    <p>依主题整理幼儿英文、家庭陪学、免费资源与线上外师课纪录。</p>
+    <p>依主題整理幼兒英文、家庭陪學、免費資源與線上外師課紀錄。</p>
   </section>
-  <section class="wrap section-block">
-    <div class="article-list">
+  <section class="wrap block article-stream">
+    <div class="simple-post-list">
       {posts.map(post => (
-        <a href={`/blog/${post.slug}/`}>
-          <div class="article-thumb"><img src="/rose-lab-visual.png" alt="" /></div>
-          <div>
-            <span class="category">{post.data.category}</span>
-            <h3>{post.data.title}</h3>
+        <article>
+          <a href={`/blog/${post.slug}/`}>
+            <span class="post-category">{post.data.category}</span>
+            <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
-            <small>{post.data.pubDate.toLocaleDateString('zh-TW')}</small>
-          </div>
-        </a>
+            <div class="post-dates"><time>{post.data.pubDate.toLocaleDateString('zh-TW')}</time></div>
+          </a>
+        </article>
       ))}
     </div>
   </section>

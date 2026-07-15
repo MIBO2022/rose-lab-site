@@ -1,93 +1,71 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-const allPosts = (await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
-const featured = allPosts[0];
-const latest = allPosts.slice(0, 6);
+const posts = (await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+const featured = posts.slice(0,5);
+const latest = posts.slice(0,10);
+const groups = [
+  { title: '幼兒英文', items: posts.filter(p => ['幼兒英文','家庭陪學'].includes(p.data.category)).slice(0,6), more: '/blog?topic=幼兒英文' },
+  { title: '線上外師課', items: posts.filter(p => p.data.category === '線上外師課').slice(0,6), more: '/blog?topic=線上外師課' },
+  { title: '家庭學習與資源', items: posts.filter(p => ['家庭選擇','家庭陪學'].includes(p.data.category)).slice(0,6), more: '/blog?topic=家庭陪學' },
+];
 ---
-<BaseLayout title="Rose Lab 自學研究所｜台灣家庭幼兒英文與自學紀錄" description="Rose Lab 分享台灣家庭的幼兒英文、自學方法、免費英文資源、線上外師課與家庭陪學紀錄。">
-  <section class="intro wrap">
-    <div class="intro-copy">
-      <p class="eyebrow">ROSE LAB 自學研究所</p>
-      <h1>陪孩子找到適合自己的英文學習方式</h1>
-      <p>分享台灣家庭實際使用 Starfall、Khan Academy Kids、線上外師課與家庭陪學的過程。這裡不只記錄進步，也保留卡關、沉默與重新調整的真實經驗。</p>
-      <div class="button-row">
-        <a class="button" href="/start">第一次來，從這裡開始</a>
-        <a class="button outline" href="/blog">瀏覽全部文章</a>
-      </div>
-    </div>
-    <div class="intro-visual">
-      <img src="/rose-lab-visual.png" alt="Rose Lab 玫瑰與自然主視覺" />
-    </div>
-  </section>
+<BaseLayout title="Rose Lab 自學研究所｜台灣家庭幼兒英文與自學紀錄" description="Rose Lab 分享台灣家庭的幼兒英文、免費學習資源、線上外師課與家庭陪學實際紀錄。">
+  <main class="home wrap">
+    <section class="category-icons" aria-label="內容分類">
+      <a href="/start"><span>01</span><strong>從這裡開始</strong><small>Start Here</small></a>
+      <a href="/blog?topic=幼兒英文"><span>02</span><strong>幼兒英文</strong><small>English for Kids</small></a>
+      <a href="/blog?topic=線上外師課"><span>03</span><strong>線上外師課</strong><small>Online Classes</small></a>
+      <a href="/resources"><span>04</span><strong>免費資源</strong><small>Free Resources</small></a>
+      <a href="/blog?topic=家庭陪學"><span>05</span><strong>家庭陪學</strong><small>Family Learning</small></a>
+      <a href="/about"><span>06</span><strong>關於我們</strong><small>About</small></a>
+    </section>
 
-  <section class="wrap section-block">
-    <h2 class="section-title">熱門主題</h2>
-    <div class="topic-list">
-      <a href="/blog?topic=線上外師課"><strong>線上外師課</strong><span>試聽、選老師、孩子不開口與陪課方式</span></a>
-      <a href="/resources"><strong>免費英文資源</strong><span>Starfall、Khan Academy Kids 與家庭短練習</span></a>
-      <a href="/blog?topic=家庭陪學"><strong>家庭陪學</strong><span>家長英文不好也能開始的做法</span></a>
-      <a href="/blog?topic=家庭選擇"><strong>教育選擇與預算</strong><span>不讀全美語幼兒園後的家庭安排</span></a>
-    </div>
-  </section>
-
-  <section class="wrap content-layout section-block">
-    <main>
-      <h2 class="section-title">精選長文</h2>
-      {featured && (
-        <a class="featured-article" href={`/blog/${featured.slug}/`}>
-          <div class="featured-image"><img src="/rose-lab-visual.png" alt="精選文章" /></div>
-          <div class="featured-copy">
-            <span class="category">{featured.data.category}</span>
-            <h2>{featured.data.title}</h2>
-            <p>{featured.data.description}</p>
-            <span class="read-more">閱讀全文 →</span>
-          </div>
-        </a>
-      )}
-
-      <h2 class="section-title spaced">依需求開始閱讀</h2>
-      <div class="guide-links">
-        <a href="/start"><span>01</span><div><strong>第一次來 Rose Lab</strong><p>先看我們家的學習起點、目前使用方式與建議閱讀順序。</p></div></a>
-        <a href="/trial-guide"><span>02</span><div><strong>第一次預約線上外師課</strong><p>試聽時不要只看孩子說了多少，也要看老師怎麼引導。</p></div></a>
-        <a href="/resources"><span>03</span><div><strong>免費 App 怎麼搭配</strong><p>了解不同工具能做什麼，以及哪些事情仍需要真人互動。</p></div></a>
-        <a href="/blog/not-all-english-kindergarten/"><span>04</span><div><strong>不讀全美語幼兒園的家庭方案</strong><p>從時間、預算與孩子反應安排可持續的學習方式。</p></div></a>
-      </div>
-    </main>
-
-    <aside>
-      <div class="sidebar-box">
-        <h2>最近更新</h2>
-        <div class="recent-posts">
-          {latest.map(post => (
+    <section class="block featured-block">
+      <h1 class="block-title">寫很久的完整整理</h1>
+      <ol class="headline-list">
+        {featured.map((post) => (
+          <li>
             <a href={`/blog/${post.slug}/`}>
               <strong>{post.data.title}</strong>
-              <span>{post.data.pubDate.toLocaleDateString('zh-TW')}</span>
+              <time>{post.data.pubDate.toLocaleDateString('zh-TW')}</time>
             </a>
-          ))}
-        </div>
-      </div>
-      <div class="sidebar-box tinted">
-        <h2>试听前先看</h2>
-        <p>先阅读 10 堂真实心得与试听观察重点，再决定是否预约，会比只看课程介绍更安心。</p>
-        <a class="button small" href="/trial-guide">进入试听指南</a>
-      </div>
-    </aside>
-  </section>
+          </li>
+        ))}
+      </ol>
+    </section>
 
-  <section class="wrap section-block">
-    <h2 class="section-title">最新文章</h2>
-    <div class="article-list">
-      {latest.slice(0,4).map(post => (
-        <a href={`/blog/${post.slug}/`}>
-          <div class="article-thumb"><img src="/rose-lab-visual.png" alt="" /></div>
-          <div>
-            <span class="category">{post.data.category}</span>
-            <h3>{post.data.title}</h3>
-            <p>{post.data.description}</p>
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
+    <section class="block">
+      <h2 class="block-title">最近更新</h2>
+      <div class="update-columns">
+        {groups.map(group => (
+          <section class="update-group">
+            <h3>{group.title}</h3>
+            <ul>
+              {group.items.length ? group.items.map(post => (
+                <li><a href={`/blog/${post.slug}/`}><time>{post.data.pubDate.toLocaleDateString('zh-TW')}</time><span>{post.data.title}</span></a></li>
+              )) : <li class="empty">文章准备中</li>}
+            </ul>
+            <a class="more-link" href={group.more}>觀看更多</a>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section class="block article-stream">
+      <div class="tab-row"><strong>最新文章</strong><span>熱門文章</span></div>
+      <div class="simple-post-list">
+        {latest.map(post => (
+          <article>
+            <a href={`/blog/${post.slug}/`}>
+              <span class="post-category">{post.data.category}</span>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <div class="post-dates"><time>{post.data.pubDate.toLocaleDateString('zh-TW')}</time></div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
 </BaseLayout>
