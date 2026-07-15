@@ -1,0 +1,5 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const { frontmatter } = Astro.props;
+---
+<BaseLayout title={`${frontmatter.title}｜Rose Lab`} description={frontmatter.description}><article class="article wrap"><span class="tag">{frontmatter.category}</span><h1>{frontmatter.title}</h1><p class="meta">發布：{frontmatter.pubDate.toLocaleDateString('zh-TW')}</p><div class="notice">本文記錄我們家的實際使用經驗，不代表每個孩子都會有相同結果。</div><slot/></article></BaseLayout>

@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const posts=(await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf()).slice(0,3);
+---
+<BaseLayout title="Rose Lab｜陪孩子從零開始學英文"><section class="hero"><div class="wrap"><div class="eyebrow">台灣家庭幼兒英文實驗紀錄</div><h1>不讀全美語幼兒園，我們怎麼陪孩子從零開始學英文？</h1><p>一位媽媽陪女兒使用 Starfall、Khan Academy Kids 與一對一線上外師課，真實記錄進步、沉默、踩雷與家庭安排。</p><a class="btn" href="/start">第一次來，從這裡開始</a><a class="btn alt" href="/trial-guide">試聽前先看</a></div></section><section class="section"><div class="wrap"><h2>Rose Lab 主要分享</h2><div class="grid"><div class="card"><span class="tag">真實紀錄</span><h3>線上外師課</h3><p class="muted">每堂課的反應、老師互動、卡關與調整，不只分享優點。</p></div><div class="card"><span class="tag">免費資源</span><h3>App 與家庭陪學</h3><p class="muted">Starfall、Khan Academy Kids 及我們實際怎麼用。</p></div><div class="card"><span class="tag">家庭選擇</span><h3>時間與教育預算</h3><p class="muted">不讀全美語幼兒園後，我們如何安排英文學習。</p></div></div></div></section><section class="section"><div class="wrap"><h2>最新文章</h2><div class="grid">{posts.map(post=><a class="card" href={`/blog/${post.slug}/`}><span class="tag">{post.data.category}</span><h3>{post.data.title}</h3><p class="muted">{post.data.description}</p></a>)}</div></div></section></BaseLayout>

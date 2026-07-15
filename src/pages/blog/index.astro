@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+const posts=(await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+---
+<BaseLayout title="學習紀錄｜Rose Lab"><section class="article wrap"><h1>學習紀錄</h1><p class="muted">依時間整理我們的幼兒英文共學與線上外師課紀錄。</p><div class="grid">{posts.map(post=><a class="card" href={`/blog/${post.slug}/`}><span class="tag">{post.data.category}</span><h3>{post.data.title}</h3><p>{post.data.description}</p></a>)}</div></section></BaseLayout>
