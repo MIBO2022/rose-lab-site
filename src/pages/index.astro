@@ -171,7 +171,7 @@ const serializedPopular = popularPosts.map((post) => ({
       renderPagination(totalPages);
 
       if (feedback) {
-        feedback.textContent = activeTab === 'latest' ? '正在查看最新文章' : '正在查看人工精选热门文章';
+        feedback.textContent = activeTab === 'latest' ? '正在查看最新文章' : '正在查看热门文章';
         feedback.dataset.mode = activeTab;
       }
 
