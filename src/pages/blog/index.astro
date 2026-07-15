@@ -2,89 +2,26 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 const posts=(await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
-const categories=[...new Set(posts.map(post=>post.data.category))];
 ---
-<BaseLayout title="全部文章｜Rose Lab 自學研究所" description="搜尋與瀏覽 Rose Lab 的幼兒英文、家庭陪學、免費資源與線上外師課文章。">
-  <section class="page-hero wrap">
-    <p class="section-kicker">ARTICLE LIBRARY</p>
-    <h1>文章總覽</h1>
-    <p class="lead">你可以用關鍵字搜尋，也可以依照主題篩選文章。未來新增的內容會自動出現在這裡。</p>
+<BaseLayout title="全部文章｜Rose Lab 自學研究所" description="Rose Lab 的幼兒英文、家庭陪學、免費資源與線上外師課文章。">
+  <section class="wrap page-header">
+    <p class="eyebrow">ALL ARTICLES</p>
+    <h1>全部文章</h1>
+    <p>依主题整理幼儿英文、家庭陪学、免费资源与线上外师课纪录。</p>
   </section>
-
-  <section class="section">
-    <div class="wrap library-shell">
-      <div class="library-tools">
-        <label class="search-box">
-          <span>搜尋</span>
-          <input id="article-search" type="search" placeholder="例如：外師課、Starfall、全美語幼兒園" autocomplete="off" />
-        </label>
-        <div class="filter-row" aria-label="文章分類">
-          <button class="filter-button is-active" type="button" data-filter="all">全部</button>
-          {categories.map(category => <button class="filter-button" type="button" data-filter={category}>{category}</button>)}
-        </div>
-      </div>
-
-      <p id="search-result" class="result-count">共 {posts.length} 篇文章</p>
-
-      <div id="article-grid" class="post-grid library-grid">
-        {posts.map(post => (
-          <a
-            class="post-card library-card"
-            href={`/blog/${post.slug}/`}
-            data-category={post.data.category}
-            data-search={`${post.data.title} ${post.data.description} ${post.data.category}`.toLowerCase()}
-          >
-            <span class="tag">{post.data.category}</span>
+  <section class="wrap section-block">
+    <div class="article-list">
+      {posts.map(post => (
+        <a href={`/blog/${post.slug}/`}>
+          <div class="article-thumb"><img src="/rose-lab-visual.png" alt="" /></div>
+          <div>
+            <span class="category">{post.data.category}</span>
             <h3>{post.data.title}</h3>
-            <p class="muted">{post.data.description}</p>
+            <p>{post.data.description}</p>
             <small>{post.data.pubDate.toLocaleDateString('zh-TW')}</small>
-          </a>
-        ))}
-      </div>
-
-      <div id="empty-state" class="empty-state" hidden>
-        <div>🌱</div>
-        <h2>目前找不到符合的文章</h2>
-        <p>可以换一个关键词，或选择「全部」查看现有内容。</p>
-      </div>
+          </div>
+        </a>
+      ))}
     </div>
   </section>
-
-  <script is:inline>
-    const searchInput = document.querySelector('#article-search');
-    const cards = [...document.querySelectorAll('.library-card')];
-    const buttons = [...document.querySelectorAll('.filter-button')];
-    const result = document.querySelector('#search-result');
-    const empty = document.querySelector('#empty-state');
-    let activeCategory = new URLSearchParams(location.search).get('topic') || 'all';
-
-    function applyFilters() {
-      const keyword = (searchInput?.value || '').trim().toLowerCase();
-      let visible = 0;
-      cards.forEach(card => {
-        const categoryMatch = activeCategory === 'all' || card.dataset.category === activeCategory;
-        const keywordMatch = !keyword || card.dataset.search.includes(keyword);
-        const show = categoryMatch && keywordMatch;
-        card.hidden = !show;
-        if (show) visible += 1;
-      });
-      result.textContent = `找到 ${visible} 篇文章`;
-      empty.hidden = visible !== 0;
-    }
-
-    buttons.forEach(button => {
-      if (button.dataset.filter === activeCategory) {
-        buttons.forEach(item => item.classList.remove('is-active'));
-        button.classList.add('is-active');
-      }
-      button.addEventListener('click', () => {
-        activeCategory = button.dataset.filter;
-        buttons.forEach(item => item.classList.toggle('is-active', item === button));
-        applyFilters();
-      });
-    });
-
-    searchInput?.addEventListener('input', applyFilters);
-    applyFilters();
-  </script>
 </BaseLayout>

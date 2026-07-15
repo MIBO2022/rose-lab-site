@@ -3,15 +3,25 @@ import BaseLayout from './BaseLayout.astro';
 const { frontmatter } = Astro.props;
 ---
 <BaseLayout title={`${frontmatter.title}｜Rose Lab`} description={frontmatter.description}>
-  <article class="article wrap">
-    <div class="article-head">
-      <span class="tag">{frontmatter.category}</span>
-      <h1>{frontmatter.title}</h1>
-      <p class="meta">發布：{frontmatter.pubDate.toLocaleDateString('zh-TW')}</p>
-      <div class="notice">本文記錄我們家的實際使用經驗，不代表每個孩子都會有相同結果；請依孩子個性、家庭時間與預算自行評估。</div>
-    </div>
-    <div class="article-body">
-      <slot />
-    </div>
-  </article>
+  <div class="wrap article-shell">
+    <article class="article-main">
+      <header class="article-header">
+        <span class="category">{frontmatter.category}</span>
+        <h1>{frontmatter.title}</h1>
+        <p class="article-description">{frontmatter.description}</p>
+        <div class="article-meta">發布日期：{frontmatter.pubDate.toLocaleDateString('zh-TW')}</div>
+      </header>
+      <div class="article-notice">本文記錄我們家的實際使用經驗，不代表每個孩子都會有相同結果。請依孩子個性、家庭時間與預算自行評估。</div>
+      <div class="article-body"><slot /></div>
+    </article>
+    <aside class="article-sidebar">
+      <div class="sidebar-box sticky-box">
+        <h2>文章導覽</h2>
+        <p>長文建議加入清楚的二級標題，讀者可以快速掃描內容。</p>
+        <a href="/blog">回到文章總覽</a>
+        <a href="/trial-guide">試聽前必看</a>
+        <a href="/resources">免費英文資源</a>
+      </div>
+    </aside>
+  </div>
 </BaseLayout>

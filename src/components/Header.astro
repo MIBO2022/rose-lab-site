@@ -1,17 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog')).map((post) => ({
+  title: post.data.title,
+  description: post.data.description,
+  category: post.data.category,
+  url: `/blog/${post.slug}/`,
+}));
+---
 <header class="site-header">
-  <div class="wrap nav-shell">
+  <div class="top-line"></div>
+  <div class="wrap header-main">
+    <button class="icon-button menu-button" type="button" aria-label="開啟選單" aria-controls="mobile-menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
     <a class="brand" href="/" aria-label="Rose Lab 首頁">
-      <img src="/rose-lab-logo.svg" alt="Rose Lab 自學研究所" />
+      <img src="/rose-lab-logo.png" alt="Rose Lab 自學研究所" />
     </a>
 
-    <nav class="main-nav" aria-label="主要選單">
+    <button class="search-button mobile-search-button" type="button" aria-label="搜尋文章" aria-controls="search-panel" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+    </button>
+
+    <div class="header-actions">
+      <a href="/start">新讀者導覽</a>
+      <a href="/about">關於我們</a>
+      <button class="search-button" type="button" aria-label="搜尋文章" aria-controls="search-panel" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+        <span>搜尋</span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="category-nav desktop-nav" aria-label="內容分類">
+    <div class="wrap category-nav-inner">
+      <a href="/blog">全部文章</a>
+      <a href="/blog?topic=線上外師課">線上外師課</a>
+      <a href="/resources">免費英文資源</a>
+      <a href="/blog?topic=家庭陪學">家庭陪學</a>
+      <a href="/blog?topic=家庭選擇">教育選擇與預算</a>
+      <a href="/trial-guide">試聽前必看</a>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <div class="mobile-menu-head">
+      <strong>選單</strong>
+      <button class="mobile-close" type="button" aria-label="關閉選單">×</button>
+    </div>
+    <nav aria-label="手機選單">
       <a href="/start">從這裡開始</a>
       <a href="/blog">全部文章</a>
-      <a href="/resources">免費資源</a>
-      <a href="/trial-guide">試聽指南</a>
+      <a href="/blog?topic=線上外師課">線上外師課</a>
+      <a href="/resources">免費英文資源</a>
+      <a href="/blog?topic=家庭陪學">家庭陪學</a>
+      <a href="/blog?topic=家庭選擇">教育選擇與預算</a>
+      <a href="/trial-guide">試聽前必看</a>
       <a href="/about">關於我們</a>
     </nav>
+  </div>
 
-    <a class="header-cta" href="/blog">找文章</a>
+  <div class="search-panel" id="search-panel" hidden>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-label="搜尋文章">
+      <div class="search-head">
+        <strong>搜尋 Rose Lab</strong>
+        <button class="search-close" type="button" aria-label="關閉搜尋">×</button>
+      </div>
+      <label class="search-field">
+        <span class="sr-only">輸入搜尋關鍵字</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+        <input type="search" placeholder="輸入文章標題、分類或關鍵字" autocomplete="off" />
+      </label>
+      <div class="search-results" aria-live="polite">
+        <p class="search-tip">輸入關鍵字後，會搜尋文章標題、摘要與分類。</p>
+      </div>
+    </div>
   </div>
 </header>
+
+<script define:vars={{ posts }}>
+  const menuButton = document.querySelector('.menu-button');
+  const mobileMenu = document.querySelector('#mobile-menu');
+  const mobileClose = document.querySelector('.mobile-close');
+  const searchButtons = document.querySelectorAll('.search-button');
+  const searchPanel = document.querySelector('#search-panel');
+  const searchClose = document.querySelector('.search-close');
+  const searchInput = document.querySelector('.search-field input');
+  const searchResults = document.querySelector('.search-results');
+
+  function openMenu() {
+    mobileMenu.hidden = false;
+    menuButton.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('no-scroll');
+  }
+  function closeMenu() {
+    mobileMenu.hidden = true;
+    menuButton.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('no-scroll');
+  }
+  function openSearch() {
+    searchPanel.hidden = false;
+    searchButtons.forEach((button) => button.setAttribute('aria-expanded', 'true'));
+    document.body.classList.add('no-scroll');
+    requestAnimationFrame(() => searchInput.focus());
+  }
+  function closeSearch() {
+    searchPanel.hidden = true;
+    searchButtons.forEach((button) => button.setAttribute('aria-expanded', 'false'));
+    document.body.classList.remove('no-scroll');
+    searchInput.value = '';
+    searchResults.innerHTML = '<p class="search-tip">輸入關鍵字後，會搜尋文章標題、摘要與分類。</p>';
+  }
+
+  menuButton?.addEventListener('click', openMenu);
+  mobileClose?.addEventListener('click', closeMenu);
+  mobileMenu?.addEventListener('click', (event) => {
+    if (event.target === mobileMenu || event.target.closest('a')) closeMenu();
+  });
+  searchButtons.forEach((button) => button.addEventListener('click', openSearch));
+  searchClose?.addEventListener('click', closeSearch);
+  searchPanel?.addEventListener('click', (event) => {
+    if (event.target === searchPanel) closeSearch();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      if (!searchPanel.hidden) closeSearch();
+      if (!mobileMenu.hidden) closeMenu();
+    }
+  });
+
+  searchInput?.addEventListener('input', () => {
+    const keyword = searchInput.value.trim().toLocaleLowerCase('zh-Hant');
+    if (!keyword) {
+      searchResults.innerHTML = '<p class="search-tip">輸入關鍵字後，會搜尋文章標題、摘要與分類。</p>';
+      return;
+    }
+    const matched = posts.filter((post) =>
+      `${post.title} ${post.description} ${post.category}`.toLocaleLowerCase('zh-Hant').includes(keyword)
+    );
+    searchResults.innerHTML = matched.length
+      ? matched.map((post) => `<a class="search-result" href="${post.url}"><span>${post.category}</span><strong>${post.title}</strong><p>${post.description}</p></a>`).join('')
+      : '<p class="search-tip">沒有找到相符文章，請換一個關鍵字試試看。</p>';
+  });
+</script>
