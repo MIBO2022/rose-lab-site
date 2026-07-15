@@ -8,12 +8,19 @@ const posts = (await getCollection('blog')).map((post) => ({
 }));
 ---
 <header class="site-header">
-  <div class="utility-row wrap">
-    <button class="menu-trigger" type="button" aria-controls="site-menu" aria-expanded="false">MENU</button>
-    <a class="brand" href="/" aria-label="Rose Lab 首頁">
-      <img src="/rose-lab-logo.png" alt="Rose Lab 自學研究所" />
+  <div class="header-main wrap">
+    <button class="icon-button menu-trigger" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="開啟選單">
+      <span></span><span></span><span></span>
+    </button>
+
+    <a class="brand" href="/" aria-label="Rose Lab 自學研究所首頁">
+      <img src="/rose-lab-mark.png" alt="Rose Lab" />
+      <span>自學研究所</span>
     </a>
-    <button class="search-trigger" type="button" aria-controls="search-panel" aria-expanded="false">搜尋</button>
+
+    <button class="icon-button search-trigger" type="button" aria-controls="search-panel" aria-expanded="false" aria-label="搜尋文章">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4.4-4.4"></path></svg>
+    </button>
   </div>
 
   <nav class="category-bar" aria-label="主要分類">
@@ -29,35 +36,29 @@ const posts = (await getCollection('blog')).map((post) => ({
 
   <div class="drawer" id="site-menu" hidden>
     <div class="drawer-panel">
-      <div class="drawer-head"><strong>MENU</strong><button class="drawer-close" type="button" aria-label="關閉選單">×</button></div>
+      <div class="drawer-head">
+        <strong>選單</strong>
+        <button class="drawer-close" type="button" aria-label="關閉選單">×</button>
+      </div>
       <nav class="drawer-nav">
-        <div>
-          <h2>開始閱讀</h2>
-          <a href="/start">第一次來，從這裡開始</a>
-          <a href="/blog">全部文章</a>
-          <a href="/trial-guide">試聽前必看</a>
-        </div>
-        <div>
-          <h2>重要分類</h2>
-          <a href="/blog?topic=幼兒英文">幼兒英文</a>
-          <a href="/blog?topic=線上外師課">線上外師課</a>
-          <a href="/resources">免費英文資源</a>
-          <a href="/blog?topic=家庭陪學">家庭陪學</a>
-          <a href="/blog?topic=教育選擇">教育選擇與預算</a>
-        </div>
-        <div>
-          <h2>熱門主題</h2>
-          <a href="/blog/tutorjr-10-lessons/">TutorJr 10 堂心得</a>
-          <a href="/blog/app-and-teacher/">App 與外師課怎麼搭配</a>
-          <a href="/blog/not-all-english-kindergarten/">不讀全美語幼兒園的安排</a>
-        </div>
+        <a href="/start">第一次來，從這裡開始</a>
+        <a href="/blog">全部文章</a>
+        <a href="/blog?topic=幼兒英文">幼兒英文</a>
+        <a href="/blog?topic=線上外師課">線上外師課</a>
+        <a href="/resources">免費英文資源</a>
+        <a href="/blog?topic=家庭陪學">家庭陪學</a>
+        <a href="/trial-guide">試聽前必看</a>
+        <a href="/about">關於 Rose Lab</a>
       </nav>
     </div>
   </div>
 
   <div class="search-panel" id="search-panel" hidden>
     <div class="search-box" role="dialog" aria-modal="true" aria-label="搜尋文章">
-      <div class="search-head"><strong>搜尋 Rose Lab</strong><button class="search-close" type="button" aria-label="關閉搜尋">×</button></div>
+      <div class="search-head">
+        <strong>搜尋 Rose Lab</strong>
+        <button class="search-close" type="button" aria-label="關閉搜尋">×</button>
+      </div>
       <input class="search-input" type="search" placeholder="輸入文章標題、分類或關鍵字" autocomplete="off" />
       <div class="search-results" aria-live="polite"><p>輸入關鍵字後開始搜尋。</p></div>
     </div>
@@ -73,45 +74,19 @@ const posts = (await getCollection('blog')).map((post) => ({
   const searchClose = document.querySelector('.search-close');
   const searchInput = document.querySelector('.search-input');
   const searchResults = document.querySelector('.search-results');
-
-  const openLayer = (layer, trigger) => {
-    layer.hidden = false;
-    trigger?.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('no-scroll');
-  };
-  const closeLayer = (layer, trigger) => {
-    layer.hidden = true;
-    trigger?.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('no-scroll');
-  };
-  menuTrigger?.addEventListener('click', () => openLayer(menu, menuTrigger));
-  menuClose?.addEventListener('click', () => closeLayer(menu, menuTrigger));
-  menu?.addEventListener('click', (e) => {
-    if (e.target === menu || e.target.closest('a')) closeLayer(menu, menuTrigger);
-  });
-  searchTrigger?.addEventListener('click', () => {
-    openLayer(search, searchTrigger);
-    requestAnimationFrame(() => searchInput?.focus());
-  });
-  searchClose?.addEventListener('click', () => closeLayer(search, searchTrigger));
-  search?.addEventListener('click', (e) => {
-    if (e.target === search) closeLayer(search, searchTrigger);
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (!menu.hidden) closeLayer(menu, menuTrigger);
-      if (!search.hidden) closeLayer(search, searchTrigger);
-    }
-  });
-  searchInput?.addEventListener('input', () => {
-    const q = searchInput.value.trim().toLowerCase();
-    if (!q) {
-      searchResults.innerHTML = '<p>輸入關鍵字後開始搜尋。</p>';
-      return;
-    }
-    const found = posts.filter((post) => `${post.title} ${post.description} ${post.category}`.toLowerCase().includes(q));
-    searchResults.innerHTML = found.length
-      ? found.map((post) => `<a href="${post.url}"><small>${post.category}</small><strong>${post.title}</strong><span>${post.description}</span></a>`).join('')
-      : '<p>沒有找到相符文章。</p>';
+  const openLayer = (layer, trigger) => { layer.hidden = false; trigger?.setAttribute('aria-expanded','true'); document.body.classList.add('no-scroll'); };
+  const closeLayer = (layer, trigger) => { layer.hidden = true; trigger?.setAttribute('aria-expanded','false'); document.body.classList.remove('no-scroll'); };
+  menuTrigger?.addEventListener('click',()=>openLayer(menu,menuTrigger));
+  menuClose?.addEventListener('click',()=>closeLayer(menu,menuTrigger));
+  menu?.addEventListener('click',(e)=>{ if(e.target===menu || e.target.closest('a')) closeLayer(menu,menuTrigger); });
+  searchTrigger?.addEventListener('click',()=>{ openLayer(search,searchTrigger); requestAnimationFrame(()=>searchInput?.focus()); });
+  searchClose?.addEventListener('click',()=>closeLayer(search,searchTrigger));
+  search?.addEventListener('click',(e)=>{ if(e.target===search) closeLayer(search,searchTrigger); });
+  document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'){ if(!menu.hidden)closeLayer(menu,menuTrigger); if(!search.hidden)closeLayer(search,searchTrigger); }});
+  searchInput?.addEventListener('input',()=>{
+    const q=searchInput.value.trim().toLowerCase();
+    if(!q){searchResults.innerHTML='<p>輸入關鍵字後開始搜尋。</p>';return;}
+    const found=posts.filter((p)=>`${p.title} ${p.description} ${p.category}`.toLowerCase().includes(q));
+    searchResults.innerHTML=found.length?found.map((p)=>`<a href="${p.url}"><small>${p.category}</small><strong>${p.title}</strong><span>${p.description}</span></a>`).join(''):'<p>沒有找到相符文章。</p>';
   });
 </script>

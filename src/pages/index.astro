@@ -1,70 +1,78 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-const posts = (await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
-const featured = posts.slice(0,5);
-const latest = posts.slice(0,10);
-const groups = [
-  { title: '幼兒英文', items: posts.filter(p => ['幼兒英文','家庭陪學'].includes(p.data.category)).slice(0,6), more: '/blog?topic=幼兒英文' },
-  { title: '線上外師課', items: posts.filter(p => p.data.category === '線上外師課').slice(0,6), more: '/blog?topic=線上外師課' },
-  { title: '家庭學習與資源', items: posts.filter(p => ['家庭選擇','家庭陪學'].includes(p.data.category)).slice(0,6), more: '/blog?topic=家庭陪學' },
+const posts=(await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+const featured=posts.filter(p=>p.data.featured).slice(0,1);
+const lead=featured[0] ?? posts[0];
+const latest=posts.filter(p=>p.slug!==lead?.slug).slice(0,6);
+const popular=(posts.filter(p=>p.data.featured).length?posts.filter(p=>p.data.featured):posts).slice(0,5);
+const categories=[
+  ['幼兒英文','孩子從零開始的學習紀錄','/blog?topic=幼兒英文','#fcecef'],
+  ['線上外師課','試聽、選老師與真實上課心得','/blog?topic=線上外師課','#edf5e9'],
+  ['免費英文資源','Starfall、Khan Academy Kids 與家庭用法','/resources','#f6f0fb'],
+  ['家庭陪學','忙碌家庭也能執行的短時間練習','/blog?topic=家庭陪學','#fff3dc'],
 ];
 ---
 <BaseLayout title="Rose Lab 自學研究所｜台灣家庭幼兒英文與自學紀錄" description="Rose Lab 分享台灣家庭的幼兒英文、免費學習資源、線上外師課與家庭陪學實際紀錄。">
   <main class="home wrap">
-    <section class="category-icons" aria-label="內容分類">
-      <a href="/start"><span>01</span><strong>從這裡開始</strong><small>Start Here</small></a>
-      <a href="/blog?topic=幼兒英文"><span>02</span><strong>幼兒英文</strong><small>English for Kids</small></a>
-      <a href="/blog?topic=線上外師課"><span>03</span><strong>線上外師課</strong><small>Online Classes</small></a>
-      <a href="/resources"><span>04</span><strong>免費資源</strong><small>Free Resources</small></a>
-      <a href="/blog?topic=家庭陪學"><span>05</span><strong>家庭陪學</strong><small>Family Learning</small></a>
-      <a href="/about"><span>06</span><strong>關於我們</strong><small>About</small></a>
+    <section class="home-intro">
+      <p class="eyebrow">台灣家庭的幼兒英文與自學紀錄</p>
+      <h1>陪孩子找到適合自己的學習方法</h1>
+      <p>用真實紀錄整理免費資源、家庭陪學與線上外師課經驗。內容以台灣家長的实际需求为中心，不追求速成，也不只分享成功。</p>
     </section>
 
-    <section class="block featured-block">
-      <h1 class="block-title">寫很久的完整整理</h1>
-      <ol class="headline-list">
-        {featured.map((post) => (
-          <li>
-            <a href={`/blog/${post.slug}/`}>
-              <strong>{post.data.title}</strong>
+    <section class="category-grid" aria-label="重要分類">
+      {categories.map(([title,desc,url,color])=>(
+        <a class="category-card" href={url} style={`--card-color:${color}`}>
+          <strong>{title}</strong><span>{desc}</span><em>查看文章 →</em>
+        </a>
+      ))}
+    </section>
+
+    {lead && <section class="featured-story">
+      <a class="featured-cover" href={`/blog/${lead.slug}/`}>
+        <img src={lead.data.cover ?? '/sample-cover.png'} alt={lead.data.coverAlt ?? lead.data.title} />
+      </a>
+      <div class="featured-copy">
+        <span class="tag">精選長文 · {lead.data.category}</span>
+        <h2><a href={`/blog/${lead.slug}/`}>{lead.data.title}</a></h2>
+        <p>{lead.data.description}</p>
+        <time>{lead.data.pubDate.toLocaleDateString('zh-TW')}</time>
+        <a class="read-more" href={`/blog/${lead.slug}/`}>閱讀全文</a>
+      </div>
+    </section>}
+
+    <section class="home-section">
+      <div class="section-head"><h2>最近更新</h2><a href="/blog">查看全部文章</a></div>
+      <div class="article-grid">
+        {latest.map(post=>(
+          <article class="article-card">
+            <a class="article-cover" href={`/blog/${post.slug}/`}><img src={post.data.cover ?? '/sample-cover.png'} alt={post.data.coverAlt ?? post.data.title} /></a>
+            <div class="article-card-body">
+              <span class="tag">{post.data.category}</span>
+              <h3><a href={`/blog/${post.slug}/`}>{post.data.title}</a></h3>
+              <p>{post.data.description}</p>
               <time>{post.data.pubDate.toLocaleDateString('zh-TW')}</time>
-            </a>
-          </li>
-        ))}
-      </ol>
-    </section>
-
-    <section class="block">
-      <h2 class="block-title">最近更新</h2>
-      <div class="update-columns">
-        {groups.map(group => (
-          <section class="update-group">
-            <h3>{group.title}</h3>
-            <ul>
-              {group.items.length ? group.items.map(post => (
-                <li><a href={`/blog/${post.slug}/`}><time>{post.data.pubDate.toLocaleDateString('zh-TW')}</time><span>{post.data.title}</span></a></li>
-              )) : <li class="empty">文章准备中</li>}
-            </ul>
-            <a class="more-link" href={group.more}>觀看更多</a>
-          </section>
+            </div>
+          </article>
         ))}
       </div>
     </section>
 
-    <section class="block article-stream">
-      <div class="tab-row"><strong>最新文章</strong><span>熱門文章</span></div>
-      <div class="simple-post-list">
-        {latest.map(post => (
-          <article>
-            <a href={`/blog/${post.slug}/`}>
-              <span class="post-category">{post.data.category}</span>
-              <h2>{post.data.title}</h2>
-              <p>{post.data.description}</p>
-              <div class="post-dates"><time>{post.data.pubDate.toLocaleDateString('zh-TW')}</time></div>
-            </a>
-          </article>
-        ))}
+    <section class="home-section home-lists">
+      <div>
+        <div class="section-head"><h2>新手先看</h2></div>
+        <ol class="rank-list">
+          <li><a href="/start">第一次来 Rose Lab，从这里开始</a></li>
+          <li><a href="/trial-guide">线上外师课试听前，家长先看什么</a></li>
+          <li><a href="/resources">我们实际使用的免费英文资源</a></li>
+        </ol>
+      </div>
+      <div>
+        <div class="section-head"><h2>热门文章</h2></div>
+        <ol class="rank-list">
+          {popular.map(post=><li><a href={`/blog/${post.slug}/`}>{post.data.title}</a></li>)}
+        </ol>
       </div>
     </section>
   </main>
