@@ -1,27 +1,110 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
 const { frontmatter } = Astro.props;
+const posts = (await getCollection('blog')).sort((a,b)=>b.data.pubDate.valueOf()-a.data.pubDate.valueOf());
+const latest = posts.slice(0,5);
+const popular = posts.filter(p=>p.data.featured).slice(0,5);
 ---
 <BaseLayout title={`${frontmatter.title}｜Rose Lab`} description={frontmatter.description}>
-  <div class="wrap article-shell">
-    <article class="article-main">
-      <header class="article-header">
-        <span class="category">{frontmatter.category}</span>
-        <h1>{frontmatter.title}</h1>
-        <p class="article-description">{frontmatter.description}</p>
-        <div class="article-meta">發布日期：{frontmatter.pubDate.toLocaleDateString('zh-TW')}</div>
-      </header>
-      <div class="article-notice">本文記錄我們家的實際使用經驗，不代表每個孩子都會有相同結果。請依孩子個性、家庭時間與預算自行評估。</div>
-      <div class="article-body"><slot /></div>
-    </article>
-    <aside class="article-sidebar">
-      <div class="sidebar-box sticky-box">
-        <h2>文章導覽</h2>
-        <p>長文建議加入清楚的二級標題，讀者可以快速掃描內容。</p>
-        <a href="/blog">回到文章總覽</a>
-        <a href="/trial-guide">試聽前必看</a>
-        <a href="/resources">免費英文資源</a>
+  <main class="article-page">
+    <div class="wrap">
+      <nav class="breadcrumbs" aria-label="麵包屑">
+        <a href="/">首頁</a><span>›</span>
+        <a href="/blog">文章</a><span>›</span>
+        <span>{frontmatter.category}</span>
+      </nav>
+
+      <div class="article-layout">
+        <article class="article-content">
+          <header class="article-title-block">
+            <h1>{frontmatter.title}</h1>
+            <div class="article-meta-row">
+              <time datetime={frontmatter.pubDate.toISOString()}>{frontmatter.pubDate.toLocaleDateString('zh-TW')}</time>
+              {frontmatter.updatedDate && <><span>更新：</span><time datetime={frontmatter.updatedDate.toISOString()}>{frontmatter.updatedDate.toLocaleDateString('zh-TW')}</time></>}
+            </div>
+            <div class="article-categories">
+              <a href="/blog">{frontmatter.category}</a>
+            </div>
+            <p class="article-lead">{frontmatter.description}</p>
+          </header>
+
+          <section class="summary-box">
+            <strong>先看重點</strong>
+            <p>這篇文章以 Rose Lab 的實際家庭使用經驗為基礎，整理適合台灣家長快速判斷與直接套用的重點。</p>
+          </section>
+
+          <section class="toc-box" aria-labelledby="toc-title">
+            <h2 id="toc-title">本文大綱</h2>
+            <nav id="article-toc" class="toc-list"></nav>
+          </section>
+
+          <div class="article-body" id="article-body">
+            <slot />
+          </div>
+
+          <section class="article-disclosure">
+            <strong>內容與推薦連結說明</strong>
+            <p>本文為我們家的實際使用紀錄，不代表每位孩子都會有相同結果。部分文章可能含推薦連結，若你透過連結預約試聽，我可能獲得平台提供的推薦回饋，但不影響我對優點與問題的真實描述。</p>
+          </section>
+        </article>
+
+        <aside class="article-side">
+          <div class="side-box sticky-box">
+            <h2>文章導覽</h2>
+            <nav id="article-toc-side" class="side-toc"></nav>
+          </div>
+          <div class="side-box">
+            <h2>快速入口</h2>
+            <a href="/start">從這裡開始</a>
+            <a href="/resources">免費英文資源</a>
+            <a href="/trial-guide">試聽前必看</a>
+          </div>
+        </aside>
       </div>
-    </aside>
-  </div>
+
+      <section class="bottom-posts">
+        <div class="bottom-column">
+          <h2>最新文章</h2>
+          <ul>
+            {latest.map(post => <li><a href={`/blog/${post.slug}/`}>{post.data.title}</a><time>{post.data.pubDate.toLocaleDateString('zh-TW')}</time></li>)}
+          </ul>
+        </div>
+        <div class="bottom-column">
+          <h2>熱門文章</h2>
+          <ul>
+            {(popular.length ? popular : latest).map(post => <li><a href={`/blog/${post.slug}/`}>{post.data.title}</a><time>{post.data.pubDate.toLocaleDateString('zh-TW')}</time></li>)}
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script is:inline>
+    (() => {
+      const body = document.getElementById('article-body');
+      const toc = document.getElementById('article-toc');
+      const side = document.getElementById('article-toc-side');
+      if (!body || !toc || !side) return;
+      const headings = [...body.querySelectorAll('h2, h3')];
+      const slugify = (text, index) => {
+        const base = text.trim().toLowerCase().replace(/\s+/g,'-').replace(/[^\u4e00-\u9fff\w-]/g,'');
+        return base || `section-${index+1}`;
+      };
+      headings.forEach((heading, index) => {
+        if (!heading.id) heading.id = slugify(heading.textContent || '', index);
+        const a = document.createElement('a');
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent || '';
+        a.className = heading.tagName === 'H3' ? 'toc-h3' : 'toc-h2';
+        toc.appendChild(a);
+        side.appendChild(a.cloneNode(true));
+      });
+      if (!headings.length) {
+        toc.innerHTML = '<span class="toc-empty">请在文章中加入二级标题，目录会自动产生。</span>';
+        side.innerHTML = '<span class="toc-empty">暂无目录</span>';
+      }
+    })();
+  </script>
 </BaseLayout>
