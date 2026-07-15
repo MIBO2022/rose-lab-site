@@ -9,6 +9,7 @@ tags:
   - "线上外师课"
   - "试听指南"
 featured: true
+popularRank: 4
 cover: "/sample-cover.png"
 coverAlt: "孩子使用平板上线上英文课的示意封面"
 ---

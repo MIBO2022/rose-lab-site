@@ -1167,3 +1167,306 @@ body.site-body{
     font-size:14px;
   }
 }
+
+/* =========================================================
+   v11 童趣互動效果：柔和、可讀、支援滑鼠與觸控
+   ========================================================= */
+:root{
+  --playful-pink:#c97998;
+  --playful-pink-light:#f9e9ef;
+  --playful-green:#718b68;
+  --playful-green-light:#edf4e9;
+  --playful-yellow:#f1c96c;
+  --playful-shadow:0 10px 26px rgba(104,78,88,.12);
+}
+
+/* 鍵盤操作也有清楚焦點 */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible{
+  outline:3px solid rgba(241,201,108,.72);
+  outline-offset:4px;
+}
+
+/* 主要可點擊元件統一回饋 */
+.category-card,
+.roundup-cover,
+.tabbed-card,
+.article-tab,
+.pagination-button,
+.desktop-nav a,
+.drawer-nav a,
+.search-trigger,
+.mobile-menu-trigger,
+.social-links a,
+.btn,
+.cta-button{
+  -webkit-tap-highlight-color:transparent;
+  transition:
+    transform .22s cubic-bezier(.2,.8,.2,1),
+    box-shadow .22s ease,
+    border-color .22s ease,
+    background-color .22s ease,
+    color .22s ease,
+    opacity .22s ease;
+}
+
+.category-card,
+.roundup-cover,
+.tabbed-cover,
+.article-tab,
+.pagination-button,
+.tabbed-card h3 a{
+  position:relative;
+  overflow:hidden;
+}
+
+/* 柔和水波点击效果 */
+.playful-ripple{
+  position:absolute;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:10;
+  transform:translate(-50%,-50%) scale(0);
+  background:rgba(255,255,255,.62);
+  box-shadow:0 0 0 1px rgba(201,121,152,.15);
+  animation:playfulRipple .58s ease-out forwards;
+}
+
+@keyframes playfulRipple{
+  0%{transform:translate(-50%,-50%) scale(0);opacity:.9}
+  100%{transform:translate(-50%,-50%) scale(18);opacity:0}
+}
+
+/* 顶部分类：像小卡片轻轻浮起 */
+.category-card:hover{
+  transform:translateY(-5px) rotate(-.25deg);
+  box-shadow:var(--playful-shadow);
+  border-color:rgba(201,121,152,.34);
+}
+.category-card:nth-child(even):hover{
+  transform:translateY(-5px) rotate(.25deg);
+}
+.category-card:active{
+  transform:translateY(-1px) scale(.985);
+}
+.category-card::after{
+  content:"✦";
+  position:absolute;
+  right:16px;
+  top:12px;
+  color:var(--playful-yellow);
+  font-size:13px;
+  opacity:0;
+  transform:scale(.4) rotate(-18deg);
+  transition:opacity .2s ease,transform .3s cubic-bezier(.2,1.4,.4,1);
+}
+.category-card:hover::after{
+  opacity:1;
+  transform:scale(1) rotate(8deg);
+}
+
+/* 懒人包封面：只轻微放大，不晃眼 */
+.roundup-cover:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 32px rgba(48,40,44,.16);
+}
+.roundup-cover:active{
+  transform:translateY(-1px) scale(.992);
+}
+.roundup-card:hover .roundup-category{
+  background:#fff;
+  color:var(--playful-pink);
+}
+.roundup-text h2{
+  transition:transform .22s ease;
+}
+.roundup-card:hover .roundup-text h2{
+  transform:translateX(3px);
+}
+
+/* 最新／热门切换：让用户明确感到切换发生 */
+.tab-feedback{
+  width:max-content;
+  max-width:100%;
+  margin:-28px auto 30px;
+  padding:5px 12px;
+  border-radius:999px;
+  background:var(--playful-green-light);
+  color:var(--playful-green);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.02em;
+  transition:background .22s ease,color .22s ease,transform .22s ease;
+}
+.tab-feedback[data-mode="popular"]{
+  background:var(--playful-pink-light);
+  color:var(--playful-pink);
+}
+.article-tab:hover{
+  background:#f7edf1;
+  color:var(--playful-pink);
+  transform:translateY(-2px);
+}
+.article-tab:active{
+  transform:translateY(0) scale(.975);
+}
+.article-tab.is-active:hover{
+  color:#fff;
+  background:#bf6e8e;
+}
+.article-tab.is-bouncing{
+  animation:tabBounce .44s cubic-bezier(.2,.9,.3,1.25);
+}
+@keyframes tabBounce{
+  0%{transform:scale(1)}
+  45%{transform:scale(.96)}
+  75%{transform:scale(1.035)}
+  100%{transform:scale(1)}
+}
+
+.tabbed-grid{
+  transition:opacity .18s ease,transform .18s ease;
+}
+.tabbed-grid.is-changing{
+  opacity:.18;
+  transform:translateY(8px);
+}
+.tabbed-grid.is-entering .tabbed-card{
+  animation:cardEnter .4s cubic-bezier(.2,.8,.2,1) both;
+}
+.tabbed-grid.is-entering .tabbed-card:nth-child(2){animation-delay:.035s}
+.tabbed-grid.is-entering .tabbed-card:nth-child(3){animation-delay:.07s}
+.tabbed-grid.is-entering .tabbed-card:nth-child(4){animation-delay:.105s}
+.tabbed-grid.is-entering .tabbed-card:nth-child(5){animation-delay:.14s}
+.tabbed-grid.is-entering .tabbed-card:nth-child(6){animation-delay:.175s}
+@keyframes cardEnter{
+  from{opacity:0;transform:translateY(12px) scale(.992)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* 文章卡：封面轻浮、标题颜色改变、森林小叶点缀 */
+.tabbed-card{
+  border-radius:10px;
+}
+.tabbed-card:hover{
+  transform:translateY(-5px);
+}
+.tabbed-card:hover .tabbed-cover{
+  box-shadow:0 13px 28px rgba(77,67,72,.14);
+}
+.tabbed-card:hover .tabbed-cover img{
+  transform:scale(1.035);
+}
+.tabbed-card h3 a::after{
+  content:"  ↗";
+  color:var(--playful-green);
+  opacity:0;
+  display:inline;
+  font-size:.85em;
+  transition:opacity .18s ease;
+}
+.tabbed-card:hover h3 a::after{
+  opacity:1;
+}
+.tabbed-card:active{
+  transform:translateY(-1px) scale(.992);
+}
+
+/* 分页像小泡泡，点击会压下去 */
+.pagination-button:hover{
+  transform:translateY(-3px) rotate(-3deg);
+  box-shadow:0 7px 16px rgba(201,121,152,.2);
+}
+.pagination-button:nth-of-type(even):hover{
+  transform:translateY(-3px) rotate(3deg);
+}
+.pagination-button:active{
+  transform:translateY(0) scale(.9);
+}
+.pagination-button.is-active{
+  box-shadow:0 5px 14px rgba(201,121,152,.22);
+}
+
+/* 页首互动：简洁但有一点童趣 */
+.desktop-nav a:hover{
+  color:var(--playful-pink);
+  transform:translateY(-2px);
+}
+.desktop-nav a::after{
+  content:"";
+  display:block;
+  width:0;
+  height:2px;
+  margin:5px auto 0;
+  border-radius:99px;
+  background:linear-gradient(90deg,var(--playful-pink),var(--playful-green));
+  transition:width .22s ease;
+}
+.desktop-nav a:hover::after{
+  width:72%;
+}
+.search-trigger:hover,
+.mobile-menu-trigger:hover{
+  color:var(--playful-pink);
+  background:var(--playful-pink-light);
+  transform:rotate(-4deg) scale(1.06);
+}
+.search-trigger:active,
+.mobile-menu-trigger:active{
+  transform:scale(.92);
+}
+
+/* 侧边选单与搜寻结果 */
+.drawer-panel,
+.search-box{
+  animation:panelPop .25s cubic-bezier(.2,.85,.25,1) both;
+}
+@keyframes panelPop{
+  from{opacity:0;transform:translateY(8px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.drawer-nav a:hover,
+.search-results a:hover{
+  background:linear-gradient(90deg,var(--playful-pink-light),rgba(237,244,233,.72));
+  color:var(--playful-pink);
+  transform:translateX(4px);
+}
+
+/* 一般按钮 */
+.btn:hover,
+.cta-button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 9px 20px rgba(201,121,152,.22);
+}
+.btn:active,
+.cta-button:active{
+  transform:translateY(0) scale(.97);
+}
+
+/* 触控装置不强制 hover，避免黏住 */
+@media(hover:none){
+  .category-card:hover,
+  .roundup-cover:hover,
+  .tabbed-card:hover,
+  .pagination-button:hover,
+  .desktop-nav a:hover,
+  .search-trigger:hover,
+  .mobile-menu-trigger:hover{
+    transform:none;
+    box-shadow:none;
+  }
+}
+
+/* 使用者偏好减少动画时，全部尊重 */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
