@@ -25,6 +25,13 @@ const socialImage = new URL('/og-default.jpg', siteUrl);
     <meta name="description" content={description} />
     <meta name="theme-color" content="#fffdf9" />
 
+<!-- 阻止彈窗 -->
+<script is:inline>
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+  });
+</script>
+
 <link rel="canonical" href={canonicalURL} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
