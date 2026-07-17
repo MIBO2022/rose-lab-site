@@ -2,7 +2,10 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-const { title='Rose Lab', description='台灣家庭自學與幼兒英文紀錄' } = Astro.props;
+const { title='Rose Lab', description='分享孩子學英文的真實經驗，提供線上外師課、英文自學資源與課程評價，幫助家長選擇適合孩子的英文學習方式' } = Astro.props;
+const siteUrl = Astro.site ?? new URL('https://rose-lab.com');
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const socialImage = new URL('/og-default.jpg', siteUrl);
 ---
 <!doctype html>
 <html lang="zh-Hant" id="top">
@@ -11,6 +14,17 @@ const { title='Rose Lab', description='台灣家庭自學與幼兒英文紀錄' 
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#fffdf9" />
+<link rel="canonical" href={canonicalURL} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={socialImage} />
+<meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
   </head>
   <body class="site-body">
