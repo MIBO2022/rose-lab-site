@@ -21,10 +21,10 @@ const popularPosts = [...posts].sort((a, b) => {
 });
 
 const categories = [
-  ['幼兒英文', '孩子從零開始的學習紀錄', '/blog?topic=幼兒英文', '#fcecef'],
-  ['線上外師課', '試聽、選老師與真實上課心得', '/blog?topic=線上外師課', '#edf5e9'],
-  ['免費資源', 'Starfall、Khan Academy Kids 與家庭用法', '/resources', '#f6f0fb'],
-  ['親子共學', '忙碌家庭也能執行的短時間練習', '/blog?topic=親子共學', '#fff3dc'],
+  ['幼兒英文', '零基礎、慢熟與第一次接觸英文的真實紀錄。', '/blog?topic=幼兒英文', '#fcecef'],
+  ['線上外師課', '試聽、選老師、陪課與孩子沉默時怎麼判斷。', '/blog?topic=線上外師課', '#edf5e9'],
+  ['免費資源', 'Starfall、Khan Academy Kids 與家庭實際用法。', '/resources', '#f6f0fb'],
+  ['親子共學', '忙碌家庭也能執行的短時間英文安排。', '/blog?topic=親子共學', '#fff3dc'],
 ];
 
 const serializedLatest = latestPosts.map((post) => ({
@@ -49,15 +49,13 @@ const serializedPopular = popularPosts.map((post) => ({
 ---
 <BaseLayout
   title="Rose Lab 自學研究所|孩子英文學習、線上外師課與免費資源"
-  description="Rose Lab 分享孩子英文學習的真實經驗,整理線上外師課、英文自學資源與實際使用心得,幫助家長找到適合孩子
-的學習方式。"
+  description="Rose Lab 分享孩子英文學習的真實經驗,整理線上外師課、英文自學資源與實際使用心得,幫助家長找到適合孩子的學習方式。"
 >
   <main class="home wrap">
     <section class="home-intro">
       <p class="eyebrow">孩子英文學習的真實紀錄</p>
       <h1>陪孩子找到適合自己的英文學習方式</h1>
-      <p>Rose Lab 分享孩子英文學習的真實經驗,整理線上外師課、英文自學資源與實際使用心得,幫助家長找到適合孩子
-的學習方式。這裡不追求速成,也不只分享成功。</p>
+      <p>Rose Lab 分享孩子英文學習的真實經驗,整理線上外師課、英文自學資源與實際使用心得,幫助家長找到適合孩子的學習方式。這裡不追求速成,也不只分享成功。</p>
     </section>
 
     <section class="category-grid" aria-label="重要分類">
