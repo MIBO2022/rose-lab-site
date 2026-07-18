@@ -1481,46 +1481,77 @@ summary:focus-visible{
 }
 
 .roundup-label{
+  display:inline-flex;
+  align-items:center;
   position:relative;
   z-index:2;
   overflow:visible;
+  width:max-content;
+
   min-height:44px;
-  margin:0 0 12px 22px;
-  padding:9px 24px;
+
+  /* 左侧预留玫瑰空间，底部与卡片拉开距离 */
+  margin:0 0 18px 34px;
+
+  /* 让标题文字不要太靠近左右边缘 */
+  padding:9px 28px 10px;
+
   border-radius:4px;
   background:#cf7d9a;
   color:#fffaf2;
+
   font-size:17px;
   font-weight:800;
   line-height:1.35;
   letter-spacing:.02em;
+
   box-shadow:0 7px 18px rgba(111,68,84,.14);
 }
 
-.roundup-label::before{
-  content:"";
-  position:absolute;
-  left:-35px;
-  top:-29px;
-  z-index:3;
-  width:58px;
-  height:68px;
-  background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA3MiI+CjxwYXRoIGQ9Ik0zMSAzNUMyOSA0NSAyNyA1NiAzMCA3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNmY4NDY5IiBzdHJva2Utd2lkdGg9IjMuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxlbGxpcHNlIGN4PSIyMiIgY3k9IjQ5IiByeD0iOSIgcnk9IjQuNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTI4IDIyIDQ5KSIgZmlsbD0iIzdmOTg2ZiIvPgo8ZWxsaXBzZSBjeD0iMzciIGN5PSI1NyIgcng9IjkiIHJ5PSI0LjUiIHRyYW5zZm9ybT0icm90YXRlKDI4IDM3IDU3KSIgZmlsbD0iIzY2ODE1ZiIvPgo8Y2lyY2xlIGN4PSIzMSIgY3k9IjIzIiByPSIxNyIgZmlsbD0iI2U3OWFiMCIvPgo8Y2lyY2xlIGN4PSIyNCIgY3k9IjIwIiByPSI5IiBmaWxsPSIjZGM3ZjlkIi8+CjxjaXJjbGUgY3g9IjM3IiBjeT0iMTkiIHI9IjkiIGZpbGw9IiNlZmFkYzAiLz4KPGNpcmNsZSBjeD0iMzEiIGN5PSIyOCIgcj0iMTAiIGZpbGw9IiNkODc0OTUiLz4KPHBhdGggZD0iTTI0IDIzYzUtNyAxMy03IDE3IDAtNCA4LTEzIDEwLTE3IDBaIiBmaWxsPSIjY2Y2NzhjIi8+CjxwYXRoIGQ9Ik0yOCAyMWMyLTQgNy00IDkgMC0xIDUtNyA2LTkgMFoiIGZpbGw9IiNmMWI3YzciLz4KPC9zdmc+") center/contain no-repeat;
-  filter:drop-shadow(0 4px 8px rgba(96,57,70,.12));
-  pointer-events:none;
+/* start */
+
+/* 左侧水彩玫瑰 */
+.roundup-label::before {
+  content: "";
+  position: absolute;
+  left: -38px;
+  top: -26px;
+  z-index: 3;
+
+  width: 64px;
+  height: 64px;
+
+  background-image: url("/images/decor/rose-decoration.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  filter: drop-shadow(0 4px 8px rgba(96, 57, 70, 0.12));
+  pointer-events: none;
 }
 
-.roundup-label::after{
-  content:"";
-  position:absolute;
-  right:-53px;
-  bottom:-19px;
-  z-index:3;
-  width:72px;
-  height:43px;
-  background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NiA1NCI+CjxwYXRoIGQ9Ik01IDQyQzMwIDM5IDU0IDI4IDg5IDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZmODQ2OSIgc3Ryb2tlLXdpZHRoPSIzLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8ZWxsaXBzZSBjeD0iMjAiIGN5PSIzNyIgcng9IjEwIiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTI1IDIwIDM3KSIgZmlsbD0iIzdmOTg2ZiIvPgo8ZWxsaXBzZSBjeD0iMzQiIGN5PSIzMSIgcng9IjExIiByeT0iNS41IiB0cmFuc2Zvcm09InJvdGF0ZSgyMiAzNCAzMSkiIGZpbGw9IiM2MzgwNWQiLz4KPGVsbGlwc2UgY3g9IjQ5IiBjeT0iMjQiIHJ4PSIxMCIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0yOCA0OSAyNCkiIGZpbGw9IiM4ZGEyN2UiLz4KPGVsbGlwc2UgY3g9IjY0IiBjeT0iMTgiIHJ4PSIxMSIgcnk9IjUuNSIgdHJhbnNmb3JtPSJyb3RhdGUoMjQgNjQgMTgpIiBmaWxsPSIjNmY4YTY2Ii8+CjxlbGxpcHNlIGN4PSI3OSIgY3k9IjExIiByeD0iOSIgcnk9IjQuNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTI1IDc5IDExKSIgZmlsbD0iIzgyOWI3NSIvPgo8Y2lyY2xlIGN4PSI5MSIgY3k9IjciIHI9IjMiIGZpbGw9IiNkZDc4OTUiLz4KPGNpcmNsZSBjeD0iODciIGN5PSIxNyIgcj0iMiIgZmlsbD0iI2VmYjBjMiIvPgo8L3N2Zz4=") center/contain no-repeat;
-  pointer-events:none;
+/* 右侧水彩叶枝 */
+.roundup-label::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  bottom: -18px;
+  z-index: 3;
+
+  width: 82px;
+  height: 46px;
+
+  background-image: url("/images/decor/leaf-decoration.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  transform: rotate(8deg);
+  transform-origin: center;
+  pointer-events: none;
 }
+
+/* end */
 
 .roundup-grid{
   gap:18px;
