@@ -1,6 +1,7 @@
 ---
 title: "范文：4岁孩子线上英文课怎么选？台湾家长完整评估指南"
 description: "示范 Rose Lab 文章页的标题标签、目录、分级标题、绿色说明框、延伸阅读、综合评分、提示框与比较表格。"
+draft: true
 pubDate: 2026-07-16
 updatedDate: 2026-07-16
 category: "线上外师课"
@@ -9,7 +10,6 @@ tags:
   - "线上外师课"
   - "试听指南"
 featured: true
-draft: true
 popularRank: 4
 cover: "/sample-cover.png"
 coverAlt: "孩子使用平板上线上英文课的示意封面"
