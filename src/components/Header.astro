@@ -32,15 +32,15 @@ const posts = (await getCollection('blog')).map((post) => ({
         <small>Online Classes</small>
       </a>
       <a href="/resources">
-        <span>免費學習資源</span>
+        <span>免費資源</span>
         <small>Free Resources</small>
       </a>
-      <a href="/blog?topic=家庭陪學">
-        <span>家庭陪學</span>
-        <small>Learning at Home</small>
+      <a href="/blog?topic=親子共學">
+        <span>親子共學</span>
+        <small>Family Learning</small>
       </a>
       <a href="/about">
-        <span>關於我們</span>
+        <span>關於 Rose Lab</span>
         <small>About Rose Lab</small>
       </a>
     </nav>
@@ -61,10 +61,10 @@ const posts = (await getCollection('blog')).map((post) => ({
         <a href="/blog"><span>全部文章</span><small>All Articles</small></a>
         <a href="/blog?topic=幼兒英文"><span>幼兒英文</span><small>English for Kids</small></a>
         <a href="/blog?topic=線上外師課"><span>線上外師課</span><small>Online Classes</small></a>
-        <a href="/resources"><span>免費學習資源</span><small>Free Resources</small></a>
-        <a href="/blog?topic=家庭陪學"><span>家庭陪學</span><small>Learning at Home</small></a>
+        <a href="/resources"><span>免費資源</span><small>Free Resources</small></a>
+        <a href="/blog?topic=親子共學"><span>親子共學</span><small>Family Learning</small></a>
         <a href="/trial-guide"><span>試聽前必看</span><small>Trial Guide</small></a>
-        <a href="/about"><span>關於我們</span><small>About Rose Lab</small></a>
+        <a href="/about"><span>關於 Rose Lab</span><small>About Rose Lab</small></a>
       </nav>
     </div>
   </div>
@@ -75,8 +75,8 @@ const posts = (await getCollection('blog')).map((post) => ({
         <strong>搜尋 Rose Lab</strong>
         <button class="search-close" type="button" aria-label="關閉搜尋">×</button>
       </div>
-      <input class="search-input" type="search" placeholder="輸入文章標題、分類或關鍵字" autocomplete="off" />
-      <div class="search-results" aria-live="polite"><p>輸入關鍵字後開始搜尋。</p></div>
+      <input class="search-input" type="search" placeholder="搜尋文章、主題或工具" autocomplete="off" />
+      <div class="search-results" aria-live="polite"><p>輸入關鍵字，例如：外師課、Starfall、試聽、親子共讀。</p></div>
     </div>
   </div>
 </header>
