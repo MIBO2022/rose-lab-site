@@ -1491,7 +1491,7 @@ summary:focus-visible{
   min-height:44px;
 
   /* 左侧预留玫瑰空间，底部与卡片拉开距离 */
-  margin:0 0 18px 34px;
+  margin:0 0 10px 34px;
 
   /* 让标题文字不要太靠近左右边缘 */
   padding:9px 28px 10px;
@@ -1514,7 +1514,7 @@ summary:focus-visible{
 .roundup-label::before {
   content: "";
   position: absolute;
-  left: -38px;
+  left: -32px;
   top: -26px;
   z-index: 3;
 
@@ -1534,7 +1534,7 @@ summary:focus-visible{
 .roundup-label::after {
   content: "";
   position: absolute;
-  right: -60px;
+  right: -50px;
   bottom: -18px;
   z-index: 3;
 
