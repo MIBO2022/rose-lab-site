@@ -1470,3 +1470,72 @@ summary:focus-visible{
     transition-duration:.01ms!important;
   }
 }
+
+/* =========================================================
+   Rose Lab 首頁懶人包配色修正
+   玫瑰 × 森林 × 奶油童趣
+   ========================================================= */
+
+/* 區塊標題：玫瑰粉 */
+.roundup-label {
+  background: #cf7d9a;
+  color: #fffaf2;
+  box-shadow: 0 5px 14px rgba(105, 65, 79, 0.14);
+}
+
+/* 卡片圓角與柔和森林陰影 */
+.roundup-cover {
+  border-radius: 16px;
+  box-shadow:
+    0 10px 24px rgba(33, 61, 46, 0.12),
+    0 2px 6px rgba(33, 61, 46, 0.06);
+}
+
+/* 從透明逐漸過渡到森林深綠 */
+.roundup-overlay {
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(31, 58, 43, 0) 0%,
+    rgba(31, 58, 43, 0) 35%,
+    rgba(55, 76, 59, 0.18) 50%,
+    rgba(42, 70, 53, 0.68) 73%,
+    rgba(21, 51, 35, 0.97) 100%
+  );
+}
+
+/* 文字保持在漸層上方 */
+.roundup-text {
+  z-index: 2;
+  padding: 52px 18px 16px;
+}
+
+/* 分類標籤：玫瑰粉 */
+.roundup-category {
+  background: rgba(215, 121, 153, 0.97);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(91, 53, 66, 0.22);
+}
+
+/* 避免滑鼠移上去後，標籤突然變成白色 */
+.roundup-card:hover .roundup-category {
+  background: rgba(215, 121, 153, 0.97);
+  color: #ffffff;
+}
+
+/* 文章標題：奶油白，提高與森林綠的對比 */
+.roundup-text h2 {
+  color: #fffaf2;
+  font-weight: 800;
+  text-shadow:
+    0 2px 4px rgba(12, 34, 23, 0.95),
+    0 0 10px rgba(12, 34, 23, 0.58);
+}
+
+/* 日期：淺鼠尾草綠 */
+.roundup-text time {
+  color: #dce8d4;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(12, 34, 23, 0.9);
+}
