@@ -1,17 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="從這裡開始｜Rose Lab 自學研究所" description="第一次來 Rose Lab，可以先了解我們家的學習起點、目前使用的資源，以及建議先看的文章。">
+<BaseLayout title="從這裡開始｜Rose Lab 自學研究所" description="第一次來 Rose Lab?從我們的孩子英文學習起點開始,了解免費 App、親子共學與線上外師課各自扮演什麼角色。">
   <section class="page-hero wrap">
     <p class="section-kicker">START HERE</p>
     <h1>第一次來 Rose Lab，請從這裡開始</h1>
-    <p class="lead">這個網站不是補習班官網，也不是英文老師教學網站，而是一位台灣媽媽陪孩子從零開始學英文的真實紀錄。</p>
+    <p class="lead">Rose Lab 不是補習班官網,也不是英文老師教學網站。這裡整理我們陪孩子從零開始學英文的真實過程:免費App 怎麼用、家庭怎麼安排、線上外師課遇到什麼問題,以及哪些方法並不適合我們。</p>
   </section>
-
   <section class="section">
     <div class="wrap split-layout">
+
       <div class="content-card">
-        <h2>我們目前怎麼學</h2>
+        <h2>我們為什麼開始</h2>
+        <p>我們沒有選擇把所有英文學習交給單一課程,而是從家庭預算、可執行時間與孩子的反應出發,慢慢組合出目前的方式。這個網站記錄的不是標準答案,而是一般家庭怎麼一邊嘗試、一邊修正。</p>
+      </div>
+
+      <div class="content-card">
+        <h2>我們目前怎麼搭配</h2>
         <ul class="checklist">
           <li><strong>Starfall：</strong>用來累積字母、歌曲與基礎輸入。</li>
           <li><strong>Khan Academy Kids：</strong>用故事、遊戲與活動增加接觸英文的樂趣。</li>
@@ -19,14 +24,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <li><strong>家庭短時間複習：</strong>把課堂句子帶回生活，不追求一次學很多。</li>
         </ul>
       </div>
+
       <div class="content-card soft">
-        <h2>建議先看的內容</h2>
+        <h2>依你現在的問題開始閱讀</h2>
         <div class="stack-links">
-          <a href="/blog/tutorjr-10-lessons/">上了 10 堂外師課後，女兒有哪些改變？</a>
-          <a href="/blog/app-and-teacher/">Starfall、Khan Academy Kids 和外師課怎麼搭配？</a>
-          <a href="/trial-guide">第一次預約試聽，家長要看什麼？</a>
+          <ul class="checklist">
+            <li><strong>孩子剛開始接觸英文：</strong>先看《<a href="#">不讀全美語幼兒園,我們怎麼安排家庭英文?</a>》</li>
+            <li><strong>正在評估線上外師課：</strong>先看《<a href="/blog/tutorjr-10-lessons-parent-review/">幼兒適合線上外師課嗎？陪女兒上完10堂 TutorJr 後的真實心得</a>》</li>
+            <li><strong>孩子上課不開口：</strong>先看《<a href="#">孩子上外師課不回答,可能是這 3 種原因</a>》</li>
+            <li><strong>想先用免費資源：</strong>先看《<a href="/blog/app-and-teacher/">Starfall、Khan Academy Kids 和外師課怎麼搭配？</a>》</li>
+            <li><strong>準備預約試聽：</strong>先看《<a href="/trial-guide">第一次預約試聽，家長要看什麼？</a>》</li>
+          </ul>
         </div>
       </div>
+
+      <div class="content-card">
+        <h2>這裡不會承諾什麼</h2>
+        <p>我們不保證每個孩子都會快速開口,也不會把一次上課反應當成長期成果。文章會盡量說清楚使用時間、孩子當時的狀態、有效與沒有效的部分,讓家長自己判斷是否適合。</p>
+      </div>
     </div>
+
+<!--CTA-->
+
+    <div class="CTA button">
+      <div class="success-panel">
+        <p><strong>第一次上外師課，孩子一直看媽媽、不敢回答，其實很正常。</strong></p>
+        <p>女兒剛開始上課時，也常常等我幫她回答。陪她上完 10 堂之後，她的英文沒有突然突飛猛進，但比較不怕外師，也更願意自己試著開口了。</p>
+        <p>
+          <a class="plan-button" href="/blog/tutorjr-10-lessons-parent-review/">
+            先看我們的 10 堂外師課真實紀錄 →
+          </a>
+        </p>
+      </div>
+    </div>
+
   </section>
 </BaseLayout>
