@@ -103,6 +103,6 @@ const posts = (await getCollection('blog')).map((post) => ({
     const q=searchInput.value.trim().toLowerCase();
     if(!q){searchResults.innerHTML='<p>輸入關鍵字後開始搜尋。</p>';return;}
     const found=posts.filter((p)=>`${p.title} ${p.description} ${p.category}`.toLowerCase().includes(q));
-    searchResults.innerHTML=found.length?found.map((p)=>`<a href="${p.url}"><small>${p.category}</small><strong>${p.title}</strong><span>${p.description}</span></a>`).join(''):'<p>沒有找到相符文章。</p>';
+    searchResults.innerHTML=found.length?found.map((p)=>`<a href="${p.url}"><small>${p.category}</small><strong>${p.title}</strong><span>${p.description}</span></a>`).join(''):'<p>目前找不到符合的文章。可以試著搜尋「外師課」、「免費 App」或「親子共學」。</p>';
   });
 </script>
