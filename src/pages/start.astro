@@ -1,62 +1,261 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="從這裡開始｜Rose Lab 自學研究所" description="第一次來 Rose Lab?從我們的孩子英文學習起點開始,了解免費 App、親子共學與線上外師課各自扮演什麼角色。">
+
+<BaseLayout
+  title="從這裡開始｜Rose Lab 自學研究所"
+  description="第一次來 Rose Lab？依照孩子目前遇到的問題，找到幼兒英文、免費學習資源、線上外師課與家庭共學的閱讀入口。"
+>
   <section class="page-hero wrap">
     <p class="section-kicker">START HERE</p>
-    <h1>第一次來 Rose Lab，請從這裡開始</h1>
-    <p class="lead">Rose Lab 不是補習班官網,也不是英文老師教學網站。這裡整理我們陪孩子從零開始學英文的真實過程:免費App 怎麼用、家庭怎麼安排、線上外師課遇到什麼問題,以及哪些方法並不適合我們。</p>
+
+    <h1>第一次來 Rose Lab，先從你現在的問題開始</h1>
+
+    <p class="lead">
+      不需要一次看完所有文章，也不用急著決定孩子接下來幾年的學習方式。
+      先找到你們家目前最困擾的一件事，再從一篇真正用得上的內容開始。
+    </p>
   </section>
+
   <section class="section">
-    <div class="wrap split-layout">
+    <div class="wrap">
 
-      <div class="content-card">
-        <h2>我們為什麼開始</h2>
-        <p>我們沒有選擇把所有英文學習交給單一課程,而是從家庭預算、可執行時間與孩子的反應出發,慢慢組合出目前的方式。這個網站記錄的不是標準答案,而是一般家庭怎麼一邊嘗試、一邊修正。</p>
-      </div>
-
-      <div class="content-card">
-        <h2>我們目前怎麼搭配</h2>
-        <ul class="checklist">
-          <li><strong>Starfall：</strong>用來累積字母、歌曲與基礎輸入。</li>
-          <li><strong>Khan Academy Kids：</strong>用故事、遊戲與活動增加接觸英文的樂趣。</li>
-          <li><strong>一對一線上外師課：</strong>練習聽懂真人提問與開口回應。</li>
-          <li><strong>家庭短時間複習：</strong>把課堂句子帶回生活，不追求一次學很多。</li>
-        </ul>
-      </div>
-
+      <!-- 第一區：依照問題開始 -->
       <div class="content-card soft">
-        <h2>依你現在的問題開始閱讀</h2>
-        <div class="stack-links">
+        <p class="section-kicker">CHOOSE YOUR QUESTION</p>
+
+        <h2>你們家現在最想解決哪一個問題？</h2>
+
+        <p>
+          很多家長不是沒有做功課，而是資訊太多，
+          每一套教材、App 和課程看起來都不能錯過。
+          請直接選擇最接近你目前狀況的入口。
+        </p>
+      </div>
+
+      <div class="split-layout">
+
+        <div class="content-card">
+          <h2>孩子剛開始接觸英文</h2>
+
+          <p>
+            不知道幾歲開始比較好，也不確定應該先讀英文繪本、
+            使用 App，還是直接安排外師課。
+          </p>
+
           <ul class="checklist">
-            <li><strong>孩子剛開始接觸英文：</strong>先看《<a href="#">不讀全美語幼兒園,我們怎麼安排家庭英文?</a>》</li>
-            <li><strong>正在評估線上外師課：</strong>先看《<a href="/blog/tutorjr-10-lessons-parent-review/">幼兒適合線上外師課嗎？陪女兒上完10堂 TutorJr 後的真實心得</a>》</li>
-            <li><strong>孩子上課不開口：</strong>先看《<a href="#">孩子上外師課不回答,可能是這 3 種原因</a>》</li>
-            <li><strong>想先用免費資源：</strong>先看《<a href="/blog/app-and-teacher/">Starfall、Khan Academy Kids 和外師課怎麼搭配？</a>》</li>
-            <li><strong>準備預約試聽：</strong>先看《<a href="/trial-guide">第一次預約試聽，家長要看什麼？</a>》</li>
+            <li>家長英文不好，也可以陪孩子開始嗎？</li>
+            <li>每天需要安排多少時間？</li>
+            <li>要先學單字、字母，還是先累積聽力？</li>
           </ul>
+
+          <p>
+            <a class="read-more" href="/category/幼兒英文/">
+              從幼兒英文開始閱讀 →
+            </a>
+          </p>
+        </div>
+
+        <div class="content-card">
+          <h2>正在考慮線上外師課</h2>
+
+          <p>
+            孩子看到外師不敢回答、一直看媽媽，
+            不一定代表他不適合上課，也可能只是還在適應。
+          </p>
+
+          <ul class="checklist">
+            <li>試聽時真正要觀察什麼？</li>
+            <li>家長要不要陪在旁邊？</li>
+            <li>怎麼判斷老師適不適合孩子？</li>
+          </ul>
+
+          <p>
+            <a class="read-more" href="/blog/tutorjr-10-lessons-parent-review/">
+              查看10堂外師課真實紀錄 →
+            </a>
+          </p>
+        </div>
+
+        <div class="content-card">
+          <h2>想先使用免費資源</h2>
+
+          <p>
+            不想一開始就買課程，可以先利用網站、App 和圖書資源，
+            觀察孩子願不願意接觸英文。
+          </p>
+
+          <ul class="checklist">
+            <li>哪些免費資源真的適合幼兒？</li>
+            <li>孩子使用 App，只是在看動畫嗎？</li>
+            <li>免費資源要怎麼和家庭互動搭配？</li>
+          </ul>
+
+          <p>
+            <a class="read-more" href="/blog/app-and-teacher/">
+              查看免費資源搭配方式 →
+            </a>
+          </p>
+        </div>
+
+        <div class="content-card">
+          <h2>家庭時間不多，怎麼安排？</h2>
+
+          <p>
+            工作、家務和照顧孩子已經很忙，
+            不需要再替自己安排一套每天都做不完的課表。
+          </p>
+
+          <ul class="checklist">
+            <li>每天只有10分鐘有用嗎？</li>
+            <li>孩子坐不住，要不要繼續？</li>
+            <li>怎麼安排才不會讓學習變成壓力？</li>
+          </ul>
+
+          <p>
+            <a class="read-more" href="/category/親子共學/">
+              查看家庭共學文章 →
+            </a>
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- 第二區：推薦閱讀 -->
+      <div class="content-card soft">
+        <p class="section-kicker">START WITH THESE</p>
+
+        <h2>還是不確定？先從這三個入口開始</h2>
+
+        <p>
+          不用先研究完整的學習路線。
+          選一篇最接近你目前疑問的文章，看完再決定下一步。
+        </p>
+
+        <div class="stack-links">
+
+          <p>
+            <strong>孩子第一次上外師課，不敢回答怎麼辦？</strong><br />
+            看我們從一直等待媽媽代答，到比較願意自己開口的10堂課紀錄。<br />
+            <a href="/blog/tutorjr-10-lessons-parent-review/">
+              閱讀真實陪課紀錄 →
+            </a>
+          </p>
+
+          <p>
+            <strong>免費 App 和外師課應該怎麼搭配？</strong><br />
+            了解 Starfall、Khan Academy Kids 和真人互動各自扮演的角色。<br />
+            <a href="/blog/app-and-teacher/">
+              閱讀資源搭配方式 →
+            </a>
+          </p>
+
+          <p>
+            <strong>第一次預約試聽，家長要注意什麼？</strong><br />
+            試聽不是考孩子會不會回答，而是觀察老師和孩子能不能建立互動。<br />
+            <a href="/trial-guide/">
+              查看試聽觀察重點 →
+            </a>
+          </p>
+
         </div>
       </div>
 
+
+      <!-- 第三區：簡單開始 -->
       <div class="content-card">
-        <h2>這裡不會承諾什麼</h2>
-        <p>我們不保證每個孩子都會快速開口,也不會把一次上課反應當成長期成果。文章會盡量說清楚使用時間、孩子當時的狀態、有效與沒有效的部分,讓家長自己判斷是否適合。</p>
-      </div>
-    </div>
+        <p class="section-kicker">ONE SMALL STEP</p>
 
-<!--CTA-->
+        <h2>目前很忙，只想先做一件事</h2>
 
-    <div class="CTA button">
-      <div class="success-panel">
-        <p><strong>第一次上外師課，孩子一直看媽媽、不敢回答，其實很正常。</strong></p>
-        <p>女兒剛開始上課時，也常常等我幫她回答。陪她上完 10 堂之後，她的英文沒有突然突飛猛進，但比較不怕外師，也更願意自己試著開口了。</p>
         <p>
-          <a class="plan-button" href="/blog/tutorjr-10-lessons-parent-review/">
-            先看我們的 10 堂外師課真實紀錄 →
-          </a>
+          不需要等到有完整時間才開始。
+          從下面選一件你們家現在最容易做到的事情就好。
+        </p>
+
+        <ul class="checklist">
+          <li>
+            <strong>每天共讀10分鐘：</strong>
+            選一本孩子願意重複看的書，不急著教認字。
+          </li>
+
+          <li>
+            <strong>固定使用一個英文 App：</strong>
+            先使用兩週，不要同時下載太多工具。
+          </li>
+
+          <li>
+            <strong>安排一次免費試聽：</strong>
+            觀察孩子是否願意留在畫面前，以及老師會不會耐心等待。
+          </li>
+
+          <li>
+            <strong>從孩子的興趣延伸：</strong>
+            車子、動物、昆蟲和煮飯，都能變成閱讀與學習的起點。
+          </li>
+        </ul>
+      </div>
+
+
+      <!-- 第四區：閱讀提醒 -->
+      <div class="content-card soft">
+        <p class="section-kicker">READING GUIDE</p>
+
+        <h2>閱讀心得文章時，可以先看這三件事</h2>
+
+        <ul class="checklist">
+          <li>
+            <strong>孩子當時的狀態：</strong>
+            年齡、個性、英文基礎和當天情緒，都可能影響反應。
+          </li>
+
+          <li>
+            <strong>家庭需要投入多少：</strong>
+            除了費用，也要考慮陪伴時間、準備工作和預約限制。
+          </li>
+
+          <li>
+            <strong>是否適合自己的孩子：</strong>
+            別人有效，不代表一定適合你們家，可以先小範圍嘗試。
+          </li>
+        </ul>
+
+        <p>
+          Rose Lab 分享的是我們家的實際經驗，不是每個家庭都必須照做的課表。
+          你可以參考，也可以依照孩子的反應調整。
         </p>
       </div>
-    </div>
 
+
+      <!-- CTA -->
+      <div class="CTA button">
+        <div class="success-panel">
+
+          <p>
+            <strong>
+              第一次上外師課，孩子一直看媽媽、不敢回答，其實很常見。
+            </strong>
+          </p>
+
+          <p>
+            女兒剛開始上課時，也常常等我幫她回答。
+            陪她上完10堂之後，她的英文沒有突然突飛猛進，
+            但比較不怕外師，也更願意自己試著開口。
+          </p>
+
+          <p>
+            <a
+              class="plan-button"
+              href="/blog/tutorjr-10-lessons-parent-review/"
+            >
+              先看我們的10堂外師課真實紀錄 →
+            </a>
+          </p>
+
+        </div>
+      </div>
+
+    </div>
   </section>
 </BaseLayout>
