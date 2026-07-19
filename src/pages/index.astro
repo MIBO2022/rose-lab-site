@@ -52,11 +52,28 @@ const serializedPopular = popularPosts.map((post) => ({
   description="Rose Lab 分享孩子英文學習的真實經驗,整理線上外師課、英文自學資源與實際使用心得,幫助家長找到適合孩子的學習方式。"
 >
   <main class="home wrap">
-    <section class="home-intro">
-      <p class="eyebrow">孩子英文學習的真實紀錄</p>
-      <h1>陪孩子找到適合自己的英文學習方式</h1>
-      <p>Rose Lab 分享孩子英文學習的真實經驗,整理線上外師課、英文自學資源與實際使用心得,幫助家長找到適合孩子的學習方式。這裡不追求速成,也不只分享成功。</p>
-    </section>
+
+<!--首頁介紹 start-->
+<section class="home-intro" aria-labelledby="home-intro-title">
+  <p class="eyebrow">
+    無後援雙寶媽｜教育圈10年｜家庭育兒實戰
+  </p>
+  <h1 id="home-intro-title">
+    一個普通家庭的育兒實驗室
+  </h1>
+  <p>
+    我是沒有後援的雙寶媽，也曾在教育圈工作10年。懷孕後開始全職育兒，
+    才發現自己不只喜歡陪伴孩子，也很享受觀察他們怎麼理解世界、
+    發展興趣，慢慢長出自己的樣子。
+  </p>
+  <p>
+    Rose Lab 記錄我們家的親子閱讀、家庭自學、自主學習與戶外探索。
+    我們不追求速成，而是重視好奇心、世界觀、童年陪伴與獨立思考；
+    也誠實分享育兒過程中的卡關、調整和重新嘗試，希望陪伴有相同困惑的家庭。
+  </p>
+</section>
+
+<!--首頁介紹 end-->
 
     <section class="category-grid" aria-label="重要分類">
       {categories.map(([title, desc, url, color]) => (
