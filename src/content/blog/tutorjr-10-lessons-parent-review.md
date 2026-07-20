@@ -1,6 +1,6 @@
----
-title: "幼兒適合線上外師課嗎？陪女兒上完10堂 TutorJr 後的真實心得"
-description: "女兒一開始不敢跟外師說話，上完10堂 TutorJr 一對一課程後，她有哪些變化？分享台灣媽媽的陪課經驗、免費試聽觀察重點，以及選方案前要先問清楚的事情。"
+2---
+title: "幼兒適合線上外師課嗎？陪女兒上完10堂 tutorJr 後的真實心得"
+description: "女兒一開始不敢跟外師說話，上完10堂 tutorJr 一對一課程後，她有哪些變化？分享台灣媽媽的陪課經驗、免費試聽觀察重點，以及選方案前要先問清楚的事情。"
 draft: false
 pubDate: 2026-07-18
 updatedDate: 2026-07-18
@@ -8,12 +8,12 @@ category: "線上外師課"
 tags:
   - "幼兒英文"
   - "線上外師課"
-  - "TutorJr"
+  - "tutorJr"
   - "TutorABC"
   - "免費試聽"
 featured: true
 popularRank: 4
-cover: "/sample-cover.png"
+cover: "/public/images/blog/tutorjr-10-lessons-cover.webp"
 coverAlt: "孩子在家使用平板上一對一線上外師課"
 ---
 
@@ -242,9 +242,9 @@ Starfall、Khan Academy Kids
 
 評分可以幫助我們快速篩選，但真正適不適合，還是要看孩子上課時的反應。
 
-## TutorJr 免費試聽，可以先了解什麼？
+## tutorJr 免費試聽，可以先了解什麼？
 
-TutorJr／TutorABC 提供約20分鐘的一對一外師免費試聽。
+tutorJr／TutorABC 提供約20分鐘的一對一外師免費試聽。
 
 我認為試聽不是用來測孩子「到底會多少英文」，而是讓家長先確認：
 
@@ -411,4 +411,4 @@ TutorJr／TutorABC 提供約20分鐘的一對一外師免費試聽。
   </p>
 </div>
 
-> 推薦說明：本文包含 TutorJr／TutorABC 推薦連結。Rose Lab 分享的是我們家的實際使用經驗；課程方案、價格、堂數與活動內容可能隨時間調整，請以平台和課程顧問當下提供的資訊為準。
+> 推薦說明：本文包含 tutorJr／TutorABC 推薦連結。Rose Lab 分享的是我們家的實際使用經驗；課程方案、價格、堂數與活動內容可能隨時間調整，請以平台和課程顧問當下提供的資訊為準。
