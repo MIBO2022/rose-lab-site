@@ -1,4 +1,4 @@
----
+w---
 title: "全美語幼兒園值得嗎？算完一年費用後，我們重排每月2萬元教育預算"
 description: "全美語、雙語幼兒園一年可能花多少？從實際費用表、115學年度公共化幼兒園負擔、Threads家長正反意見，到普通家庭每月2萬元的幼兒園、美語啟蒙、外師課與共讀配置，整理我們最後沒有選全美語幼兒園的原因。"
 draft: false
@@ -42,16 +42,28 @@ popularRank: 2
 
 真正讓我停下來的，不是某一筆費用，而是把所有項目放進一整年後，我發現這不是「多付一點學費」，而可能是一條要長期維持的教育路線。
 
-<figure>
-  <img
-    src="/images/blog/threads-full-english-kindergarten-budget.webp"
-    alt="我在Threads分享放棄全美語幼兒園與重新安排家庭教育預算的貼文"
-    loading="lazy"
-  />
-  <figcaption>
-    我把這個選擇分享到Threads後，截至截圖時累積超過2.4萬次瀏覽，也收到支持、質疑與不同家庭的實際經驗。
-  </figcaption>
-</figure>
+<!--引用threads -->
+<div class="threads-post-embed">
+  <blockquote
+    class="text-post-media"
+    data-text-post-permalink="https://www.threads.net/@rose313_doremy/post/DX_xZwfANQH"
+    data-text-post-version="0"
+    id="ig-tp-DX_xZwfANQH"
+  >
+    <a
+      href="https://www.threads.com/@rose313_doremy/post/DX_xZwfANQH"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      在 Threads 查看這篇貼文
+    </a>
+  </blockquote>
+</div>
+
+<p class="threads-post-caption">
+  我把這個選擇分享到 Threads 後，累積超過 2.4 萬次瀏覽，
+  也收到支持、質疑與不同家庭的實際經驗。
+</p>
 
 ## 「幼兒園」和「幼稚園」是同一件事嗎？
 
@@ -66,7 +78,7 @@ popularRank: 2
 公立、非營利、準公共與一般私立，是制度與收費政策上較明確的類型；「全美語」「雙語」「國際」「沉浸式美語」通常是園所招生或家長討論使用的名稱，不是全國統一的法定分類。
 
 依《幼兒教保及照顧服務實施準則》，幼兒園如有外語學習需要，應以部分時間融入教保活動，不得以全部時間進行外語教學，也不得在部分時間採與教保活動分離的外語教學。家長參觀時除了問英文時數，也應確認園所立案名稱、課程如何安排，以及外語活動究竟由誰提供。  
-法規來源：[教育部主管法規共用系統—幼兒教保及照顧服務實施準則](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL000687)。
+法規來源：[教育部主管法規共用系統—幼兒教保及照顧服務實施準則](https://edu.law.moe.gov.tw/LawContent.asp2wx?id=GL000687)。
 
 這個提醒不是要否定園所，而是要避免我們只被「全美」「雙語」四個字說服，卻沒有進一步了解孩子每天真正經歷什麼。
 
