@@ -1,4 +1,4 @@
-2---
+---
 title: "幼兒適合線上外師課嗎？陪女兒上完10堂 tutorJr 後的真實心得"
 description: "女兒一開始不敢跟外師說話，上完10堂 tutorJr 一對一課程後，她有哪些變化？分享台灣媽媽的陪課經驗、免費試聽觀察重點，以及選方案前要先問清楚的事情。"
 draft: false
@@ -13,7 +13,7 @@ tags:
   - "免費試聽"
 featured: true
 popularRank: 4
-cover: "/public/images/blog/tutorjr-10-lessons-cover.webp"
+cover: "/images/blog/tutorjr-10-lessons-cover.webp"
 coverAlt: "孩子在家使用平板上一對一線上外師課"
 ---
 
